@@ -13,5 +13,5 @@ type ChatWidgetProps = {
     height?: string;
     width?: string;
 };
-declare const ChatWidget: ({ initialMessages, apiEndpoint, widgetTitle, primaryColor, position, height, width, }: ChatWidgetProps) => import("react/jsx-runtime").JSX.Element;
+declare const ChatWidget: ({ initialMessages, apiEndpoint, widgetTitle, primaryColor, position, height, width, }: ChatWidgetProps) => import("react/jsx-runtime").JSX.Element | null;
 export default ChatWidget;
