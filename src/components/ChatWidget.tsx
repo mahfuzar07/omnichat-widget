@@ -91,16 +91,16 @@ const ChatWidget = ({
 			setMessages((prev) => [...prev, botMessage]);
 
 			// Demo response
-			setTimeout(() => {
-				const botMessage: Message = {
-					id: (Date.now() + 1).toString(),
-					content: `You said: "${content}". This is a simulated response.`,
-					sender: 'bot',
-					timestamp: new Date(),
-				};
-				setMessages((prev) => [...prev, botMessage]);
-				setIsLoading(false);
-			}, 1000);
+			// setTimeout(() => {
+			// 	const botMessage: Message = {
+			// 		id: (Date.now() + 1).toString(),
+			// 		content: `You said: "${content}". This is a simulated response.`,
+			// 		sender: 'bot',
+			// 		timestamp: new Date(),
+			// 	};
+			// 	setMessages((prev) => [...prev, botMessage]);
+			// 	setIsLoading(false);
+			// }, 1000);
 		} catch (error) {
 			console.error('Error sending message:', error);
 			setIsLoading(false);
