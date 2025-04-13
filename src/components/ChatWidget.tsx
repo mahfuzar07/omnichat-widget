@@ -44,8 +44,11 @@ const ChatWidget = ({
 
 	// Check if we're in a browser environment and set up the component
 	useEffect(() => {
-		setIsMounted(true);
-		apiEndpointRef.current = apiEndpoint;
+		// Only set mounted state to true in browser environment
+		if (typeof window !== 'undefined') {
+			setIsMounted(true);
+			apiEndpointRef.current = apiEndpoint;
+		}
 	}, [apiEndpoint]);
 
 	// Scroll to bottom when messages change
@@ -132,7 +135,7 @@ const ChatWidget = ({
 	};
 
 	// Don't render anything during SSR or before mounting
-	if (!isMounted) {
+	if (!isMounted || typeof window === 'undefined') {
 		return null;
 	}
 
