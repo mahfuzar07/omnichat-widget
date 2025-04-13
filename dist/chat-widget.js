@@ -710,7 +710,7 @@ const xr = ({ title: g, onClose: l, primaryColor: E }) => {
   }, S = {
     backgroundColor: E
   };
-  return /* @__PURE__ */ o.jsx("form", { onSubmit: O, className: "border-t border-gray-200 p-3 bg-white", children: /* @__PURE__ */ o.jsxs("div", { className: "flex items-center", children: [
+  return /* @__PURE__ */ o.jsx("form", { onSubmit: O, className: "border-t border-gray-200 px-1 py-2 bg-white", children: /* @__PURE__ */ o.jsxs("div", { className: "flex items-center", children: [
     /* @__PURE__ */ o.jsx(
       "input",
       {
@@ -718,7 +718,7 @@ const xr = ({ title: g, onClose: l, primaryColor: E }) => {
         value: f,
         onChange: (b) => d(b.target.value),
         placeholder: "Type your message...",
-        className: "flex-1 border border-gray-300 rounded-l-lg px-4 py-2 focus:outline-none",
+        className: "flex-1 border border-gray-300 rounded-l-xl px-4 py-2 focus:outline-none bg-white text-black",
         disabled: l
       }
     ),
@@ -726,7 +726,7 @@ const xr = ({ title: g, onClose: l, primaryColor: E }) => {
       "button",
       {
         type: "submit",
-        className: "px-4 h-[42px] text-white rounded-r-lg disabled:opacity-50 flex items-center justify-center",
+        className: "px-4 h-[42px] text-white rounded-r-xl disabled:opacity-50 flex items-center justify-center ",
         style: S,
         disabled: l || !f.trim(),
         children: /* @__PURE__ */ o.jsxs(
@@ -800,13 +800,13 @@ const xr = ({ title: g, onClose: l, primaryColor: E }) => {
     m(!C);
   }, Q = {
     position: "fixed",
-    [d === "bottom-right" ? "right" : "left"]: "20px",
-    bottom: "20px",
+    [d === "bottom-right" ? "right" : "left"]: "10px",
+    bottom: "10px",
     zIndex: 1e3
   }, ee = {
     backgroundColor: f
   };
-  return !T || typeof window > "u" ? null : /* @__PURE__ */ o.jsx("div", { className: "chat-widget-container", style: Q, children: C ? /* @__PURE__ */ o.jsxs("div", { className: "bg-white rounded-lg shadow-xl flex flex-col overflow-hidden", style: { height: O, width: S }, children: [
+  return !T || typeof window > "u" ? null : /* @__PURE__ */ o.jsx("div", { className: "", style: Q, children: C ? /* @__PURE__ */ o.jsxs("div", { className: "!bg-white rounded shadow-xl flex flex-col overflow-hidden", style: { height: O, width: S }, children: [
     /* @__PURE__ */ o.jsx(xr, { title: E, onClose: h, primaryColor: f }),
     /* @__PURE__ */ o.jsxs("div", { className: "flex-1 overflow-y-auto p-4 bg-gray-50", children: [
       /* @__PURE__ */ o.jsx(Er, { messages: b, primaryColor: f }),
