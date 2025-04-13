@@ -75,21 +75,20 @@ const ChatWidget = ({
 		try {
 			// For demo purposes, we'll simulate a response
 			// In a real implementation, you would use apiEndpointRef.current for the API call:
-			/*
-      const response = await fetch(apiEndpointRef.current, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: content }),
-      });
-      const data = await response.json();
-      const botMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        content: data.message,
-        sender: "bot",
-        timestamp: new Date(),
-      };
-      setMessages((prev) => [...prev, botMessage]);
-      */
+
+			const response = await fetch(apiEndpointRef.current, {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ message: content }),
+			});
+			const data = await response.json();
+			const botMessage: Message = {
+				id: (Date.now() + 1).toString(),
+				content: data.message,
+				sender: 'bot',
+				timestamp: new Date(),
+			};
+			setMessages((prev) => [...prev, botMessage]);
 
 			// Demo response
 			setTimeout(() => {
