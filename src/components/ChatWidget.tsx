@@ -124,8 +124,8 @@ const ChatWidget = ({
 	// Styles for the widget container
 	const widgetStyles = {
 		position: 'fixed',
-		[position === 'bottom-right' ? 'right' : 'left']: '20px',
-		bottom: '20px',
+		[position === 'bottom-right' ? 'right' : 'left']: '10px',
+		bottom: '10px',
 		zIndex: 1000,
 	} as React.CSSProperties;
 
@@ -140,7 +140,7 @@ const ChatWidget = ({
 	}
 
 	return (
-		<div className="chat-widget-container" style={widgetStyles}>
+		<div className="" style={widgetStyles}>
 			{!isOpen ? (
 				<button
 					onClick={toggleChat}
@@ -164,7 +164,7 @@ const ChatWidget = ({
 					</svg>
 				</button>
 			) : (
-				<div className="bg-white rounded-lg shadow-xl flex flex-col overflow-hidden" style={{ height, width }}>
+				<div className="!bg-white rounded shadow-xl flex flex-col overflow-hidden" style={{ height, width }}>
 					<ChatHeader title={widgetTitle} onClose={toggleChat} primaryColor={primaryColor} />
 
 					<div className="flex-1 overflow-y-auto p-4 bg-gray-50">

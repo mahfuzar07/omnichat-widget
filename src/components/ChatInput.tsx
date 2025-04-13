@@ -26,19 +26,19 @@ const ChatInput = ({ onSendMessage, isLoading, primaryColor }: ChatInputProps) =
 	};
 
 	return (
-		<form onSubmit={handleSubmit} className="border-t border-gray-200 p-3 bg-white">
+		<form onSubmit={handleSubmit} className="border-t border-gray-200 px-1 py-2 bg-white">
 			<div className="flex items-center">
 				<input
 					type="text"
 					value={message}
 					onChange={(e) => setMessage(e.target.value)}
 					placeholder="Type your message..."
-					className="flex-1 border border-gray-300 rounded-l-lg px-4 py-2 focus:outline-none"
+					className="flex-1 border border-gray-300 rounded-l-xl px-4 py-2 focus:outline-none bg-white text-black"
 					disabled={isLoading}
 				/>
 				<button
 					type="submit"
-					className="px-4 h-[42px] text-white rounded-r-lg disabled:opacity-50 flex items-center justify-center"
+					className="px-4 h-[42px] text-white rounded-r-xl disabled:opacity-50 flex items-center justify-center "
 					style={buttonStyle}
 					disabled={isLoading || !message.trim()}
 				>
