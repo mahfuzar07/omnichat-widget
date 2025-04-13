@@ -725,7 +725,7 @@ const xr = ({ title: g, onClose: u, primaryColor: E }) => {
         value: f,
         onChange: (b) => d(b.target.value),
         placeholder: "Type your message...",
-        className: "flex-1 border border-gray-300 rounded-l-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-opacity-50",
+        className: "flex-1 border border-gray-300 rounded-l-lg px-4 py-2 focus:outline-none",
         disabled: u
       }
     ),
@@ -733,7 +733,7 @@ const xr = ({ title: g, onClose: u, primaryColor: E }) => {
       "button",
       {
         type: "submit",
-        className: "px-4 py-2 text-white rounded-r-lg disabled:opacity-50",
+        className: "px-4 h-[42px] text-white rounded-r-lg disabled:opacity-50 flex items-center justify-center",
         style: S,
         disabled: u || !f.trim(),
         children: /* @__PURE__ */ a.jsxs(

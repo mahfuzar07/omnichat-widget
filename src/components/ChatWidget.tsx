@@ -36,24 +36,27 @@ const ChatWidget = ({
 	const [messages, setMessages] = useState<Message[]>(initialMessages);
 	const [isOpen, setIsOpen] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
+	const [isMounted, setIsMounted] = useState(false);
 	const messagesEndRef = useRef<HTMLDivElement>(null);
 
-	// Store the API endpoint in a ref to avoid the unused variable warning
+	// Store the API endpoint in a ref
 	const apiEndpointRef = useRef(apiEndpoint);
 
+	// Check if we're in a browser environment and set up the component
 	useEffect(() => {
-		// Update the ref if the prop changes
+		setIsMounted(true);
 		apiEndpointRef.current = apiEndpoint;
 	}, [apiEndpoint]);
 
+	// Scroll to bottom when messages change
 	useEffect(() => {
-		if (messagesEndRef.current) {
+		if (messagesEndRef.current && isMounted) {
 			messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
 		}
-	}, [messages]);
+	}, [messages, isMounted]);
 
 	const handleSendMessage = async (content: string) => {
-		if (!content.trim()) return;
+		if (!content.trim() || !isMounted) return;
 
 		// Add user message
 		const userMessage: Message = {
@@ -127,6 +130,11 @@ const ChatWidget = ({
 	const buttonStyles = {
 		backgroundColor: primaryColor,
 	};
+
+	// Don't render anything during SSR or before mounting
+	if (!isMounted) {
+		return null;
+	}
 
 	return (
 		<div className="chat-widget-container" style={widgetStyles}>

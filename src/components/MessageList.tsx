@@ -1,3 +1,5 @@
+'use client';
+
 import type { Message } from './ChatWidget';
 
 type MessageListProps = {
