@@ -1,7 +1,7 @@
 'use client';
 
 import { IoLogoWechat } from 'react-icons/io5';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { usePageStore, useWidgetConfigStore, useWidgetToggleStore } from '../lib/store';
 import { MdClose } from 'react-icons/md';
 import HomeContainer from './main-page/HomeContainer';

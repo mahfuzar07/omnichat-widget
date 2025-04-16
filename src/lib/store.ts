@@ -91,9 +91,7 @@ export const useWidgetConfigStore = create<ChatState>()(
 		}),
 		{
 			name: 'chat-widget-storage',
-			partialize: (state) => ({
-				messages: state.messages,
-			}),
+			storage: typeof window !== 'undefined' ? createJSONStorage(() => localStorage) : undefined,
 		}
 	)
 );

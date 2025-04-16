@@ -3,7 +3,6 @@
 import type React from 'react';
 import { BsFillSendFill, BsEmojiSmile } from 'react-icons/bs';
 import { useState, useRef, useEffect } from 'react';
-import { useWidgetConfigStore } from '../../main';
 
 type ChatInputProps = {
 	onSendMessage: (message: string) => void;
@@ -13,7 +12,6 @@ type ChatInputProps = {
 const ChatInput = ({ onSendMessage, isLoading }: ChatInputProps) => {
 	const [message, setMessage] = useState('');
 	const textareaRef = useRef<HTMLTextAreaElement>(null);
-	const primaryColor = useWidgetConfigStore((state) => state.primaryColor);
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
