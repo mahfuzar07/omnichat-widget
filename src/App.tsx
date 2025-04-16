@@ -1,15 +1,16 @@
 'use client';
-
-import ChatWidget from './components/ChatWidget';
 import './App.css';
+import OmniChatWidget from './components/OmniChatWidget';
 
 function App() {
 	return (
 		<>
-			<ChatWidget
-				initialMessages={[{ id: '1', content: 'Hello! How can I help you today?', sender: 'bot' }]}
+			<OmniChatWidget
+				initialMessages={[
+					{ id: '1', content: 'Hi there! You can begin by asking your question below. Someone will be with you shortly.', sender: 'bot' },
+				]}
 				apiEndpoint="/api/chat"
-				widgetTitle="Support Chat"
+				widgetTitle="Hi there 👋"
 				primaryColor="#4f46e5"
 			/>
 		</>
