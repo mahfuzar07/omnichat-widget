@@ -1314,8 +1314,8 @@ const lr = ({ onSendMessage: t, isLoading: n }) => {
       )
     ] }),
     /* @__PURE__ */ r.jsxs("div", { ref: v, className: "message-container smooth-scroll my-1", children: [
+      y && /* @__PURE__ */ r.jsx("div", { className: "flex justify-center mt-4", children: /* @__PURE__ */ r.jsx("div", { className: "dot-typing" }) }),
       /* @__PURE__ */ r.jsx("div", { className: "message-list", children: /* @__PURE__ */ r.jsx(sr, { messages: c }) }),
-      y && /* @__PURE__ */ r.jsx("div", { className: "flex justify-center my-2", children: /* @__PURE__ */ r.jsx("div", { className: "dot-typing" }) }),
       /* @__PURE__ */ r.jsx("div", { ref: w })
     ] }),
     /* @__PURE__ */ r.jsx(lr, { onSendMessage: h, isLoading: y })
