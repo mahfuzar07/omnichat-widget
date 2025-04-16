@@ -1230,7 +1230,7 @@ const lr = ({ onSendMessage: t, isLoading: n }) => {
         onChange: (m) => o(m.target.value),
         placeholder: "Type your message...",
         rows: 1,
-        className: "w-full pr-16 resize-none overflow-y-auto hide-scrollbar max-h-[100px] px-3 py-2.5 text-sm text-black focus:outline-none",
+        className: "w-full pr-16 bg-transparent resize-none overflow-y-auto hide-scrollbar max-h-[100px] px-3 py-2.5 text-sm text-black focus:outline-none",
         disabled: n
       }
     ),
@@ -1345,7 +1345,7 @@ const lr = ({ onSendMessage: t, isLoading: n }) => {
   ]);
   const _ = Qe((P) => P.widgetOpen), T = Qe((P) => P.toggleWidget), d = X((P) => P.selectedPage), N = W((P) => P.position), D = W((P) => P.height), $ = W((P) => P.width), oe = W((P) => P.primaryColor);
   return typeof window > "u" ? null : /* @__PURE__ */ r.jsxs(r.Fragment, { children: [
-    /* @__PURE__ */ r.jsx("div", { className: `fixed ${N === "bottom-right" ? "right-3" : "left-3"} bottom-3 z-50`, children: /* @__PURE__ */ r.jsx(
+    /* @__PURE__ */ r.jsx("div", { className: `fixed ${N === "bottom-right" ? "right-3" : "left-3"} bottom-3 z-[1000]`, children: /* @__PURE__ */ r.jsx(
       "button",
       {
         onClick: T,
