@@ -137,14 +137,14 @@ const ChatContainer = () => {
 			</div>
 
 			<div ref={containerRef} className="message-container smooth-scroll my-1">
-				<div className="message-list">
-					<MessageList messages={messages} />
-				</div>
 				{isLoading && (
-					<div className="flex justify-center my-2">
+					<div className="flex justify-center mt-4">
 						<div className="dot-typing"></div>
 					</div>
 				)}
+				<div className="message-list">
+					<MessageList messages={messages} />
+				</div>
 				<div ref={messagesEndRef} />
 			</div>
 
