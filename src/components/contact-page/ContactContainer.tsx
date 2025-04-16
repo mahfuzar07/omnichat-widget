@@ -83,7 +83,7 @@ export default function ContactContainer() {
 						value={name}
 						onChange={(e) => setName(e.target.value)}
 						placeholder="Your name"
-						className="w-full  border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-gray-600 text-black placeholder:text-slate-400 placeholder:font-thin placeholder:text-sm"
+						className="w-full  border bg-white border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-gray-600 text-black placeholder:text-slate-400 placeholder:font-thin placeholder:text-sm"
 						disabled={isLoading}
 						required
 					/>
@@ -92,7 +92,7 @@ export default function ContactContainer() {
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
 						placeholder="Your email address"
-						className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none text-black placeholder:text-slate-400 placeholder:font-thin placeholder:text-sm focus:ring-1 focus:ring-gray-600"
+						className="w-full border bg-white border-gray-300 rounded px-3 py-2 focus:outline-none text-black placeholder:text-slate-400 placeholder:font-thin placeholder:text-sm focus:ring-1 focus:ring-gray-600"
 						disabled={isLoading}
 						required
 					/>
@@ -101,7 +101,7 @@ export default function ContactContainer() {
 						value={subject}
 						onChange={(e) => setSubject(e.target.value)}
 						placeholder="Subject"
-						className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none text-black placeholder:text-slate-400 placeholder:font-thin placeholder:text-sm focus:ring-1 focus:ring-gray-600"
+						className="w-full border bg-white border-gray-300 rounded px-3 py-2 focus:outline-none text-black placeholder:text-slate-400 placeholder:font-thin placeholder:text-sm focus:ring-1 focus:ring-gray-600"
 						disabled={isLoading}
 					/>
 					<textarea

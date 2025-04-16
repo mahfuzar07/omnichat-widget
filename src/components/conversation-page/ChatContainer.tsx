@@ -140,14 +140,12 @@ const ChatContainer = () => {
 				<div className="message-list">
 					<MessageList messages={messages} />
 				</div>
-
-				<div ref={messagesEndRef} />
-
 				{isLoading && (
 					<div className="flex justify-center my-2">
 						<div className="dot-typing"></div>
 					</div>
 				)}
+				<div ref={messagesEndRef} />
 			</div>
 
 			<ChatInput onSendMessage={handleSendMessage} isLoading={isLoading} />

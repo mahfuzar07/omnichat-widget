@@ -82,7 +82,7 @@ const OmniChatWidget = ({ apiEndpoint, widgetTitle, primaryColor, position, heig
 
 	return (
 		<>
-			<div className={`fixed ${currentPosition === 'bottom-right' ? 'right-3' : 'left-3'} bottom-3 z-[1000]`}>
+			<div className={`fixed ${currentPosition === 'bottom-right' ? 'right-3' : 'left-3'} bottom-3 z-[10000]`}>
 				<button
 					onClick={toggleWidget}
 					className="rounded-full p-3 text-white shadow-lg hover:opacity-90 transition-opacity"
@@ -95,7 +95,7 @@ const OmniChatWidget = ({ apiEndpoint, widgetTitle, primaryColor, position, heig
 
 			{widgetOpen && (
 				<div
-					className={`bg-slate-100 fixed  bottom-[40px] rounded shadow-md flex flex-col overflow-hidden w-full md:w-auto pb-8 ${
+					className={`bg-slate-100 z-[9999] fixed  bottom-[40px] rounded shadow-md flex flex-col overflow-hidden w-full md:w-auto pb-8 ${
 						currentPosition === 'bottom-right' ? 'md:right-5 right-1' : 'md:left-5 left-1'
 					}`}
 					style={{ height: currentHeight, width: currentWidth, backgroundImage: `url('../bg.svg')`, backgroundPosition: 'top', objectFit: 'cover' }}
