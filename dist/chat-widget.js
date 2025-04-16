@@ -1116,7 +1116,7 @@ function nr() {
           value: o,
           onChange: (j) => c(j.target.value),
           placeholder: "Your name",
-          className: "w-full  border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-gray-600 text-black placeholder:text-slate-400 placeholder:font-thin placeholder:text-sm",
+          className: "w-full  border bg-white border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-gray-600 text-black placeholder:text-slate-400 placeholder:font-thin placeholder:text-sm",
           disabled: v,
           required: !0
         }
@@ -1128,7 +1128,7 @@ function nr() {
           value: l,
           onChange: (j) => y(j.target.value),
           placeholder: "Your email address",
-          className: "w-full border border-gray-300 rounded px-3 py-2 focus:outline-none text-black placeholder:text-slate-400 placeholder:font-thin placeholder:text-sm focus:ring-1 focus:ring-gray-600",
+          className: "w-full border bg-white border-gray-300 rounded px-3 py-2 focus:outline-none text-black placeholder:text-slate-400 placeholder:font-thin placeholder:text-sm focus:ring-1 focus:ring-gray-600",
           disabled: v,
           required: !0
         }
@@ -1140,7 +1140,7 @@ function nr() {
           value: m,
           onChange: (j) => f(j.target.value),
           placeholder: "Subject",
-          className: "w-full border border-gray-300 rounded px-3 py-2 focus:outline-none text-black placeholder:text-slate-400 placeholder:font-thin placeholder:text-sm focus:ring-1 focus:ring-gray-600",
+          className: "w-full border bg-white border-gray-300 rounded px-3 py-2 focus:outline-none text-black placeholder:text-slate-400 placeholder:font-thin placeholder:text-sm focus:ring-1 focus:ring-gray-600",
           disabled: v
         }
       ),
@@ -1315,8 +1315,8 @@ const lr = ({ onSendMessage: t, isLoading: n }) => {
     ] }),
     /* @__PURE__ */ r.jsxs("div", { ref: v, className: "message-container smooth-scroll my-1", children: [
       /* @__PURE__ */ r.jsx("div", { className: "message-list", children: /* @__PURE__ */ r.jsx(sr, { messages: c }) }),
-      /* @__PURE__ */ r.jsx("div", { ref: w }),
-      y && /* @__PURE__ */ r.jsx("div", { className: "flex justify-center my-2", children: /* @__PURE__ */ r.jsx("div", { className: "dot-typing" }) })
+      y && /* @__PURE__ */ r.jsx("div", { className: "flex justify-center my-2", children: /* @__PURE__ */ r.jsx("div", { className: "dot-typing" }) }),
+      /* @__PURE__ */ r.jsx("div", { ref: w })
     ] }),
     /* @__PURE__ */ r.jsx(lr, { onSendMessage: h, isLoading: y })
   ] });
@@ -1345,7 +1345,7 @@ const lr = ({ onSendMessage: t, isLoading: n }) => {
   ]);
   const _ = Qe((P) => P.widgetOpen), T = Qe((P) => P.toggleWidget), d = X((P) => P.selectedPage), N = W((P) => P.position), D = W((P) => P.height), $ = W((P) => P.width), oe = W((P) => P.primaryColor);
   return typeof window > "u" ? null : /* @__PURE__ */ r.jsxs(r.Fragment, { children: [
-    /* @__PURE__ */ r.jsx("div", { className: `fixed ${N === "bottom-right" ? "right-3" : "left-3"} bottom-3 z-[1000]`, children: /* @__PURE__ */ r.jsx(
+    /* @__PURE__ */ r.jsx("div", { className: `fixed ${N === "bottom-right" ? "right-3" : "left-3"} bottom-3 z-[10000]`, children: /* @__PURE__ */ r.jsx(
       "button",
       {
         onClick: T,
@@ -1358,7 +1358,7 @@ const lr = ({ onSendMessage: t, isLoading: n }) => {
     _ && /* @__PURE__ */ r.jsxs(
       "div",
       {
-        className: `bg-slate-100 fixed  bottom-[40px] rounded shadow-md flex flex-col overflow-hidden w-full md:w-auto pb-8 ${N === "bottom-right" ? "md:right-5 right-1" : "md:left-5 left-1"}`,
+        className: `bg-slate-100 z-[9999] fixed  bottom-[40px] rounded shadow-md flex flex-col overflow-hidden w-full md:w-auto pb-8 ${N === "bottom-right" ? "md:right-5 right-1" : "md:left-5 left-1"}`,
         style: { height: D, width: $, backgroundImage: "url('../bg.svg')", backgroundPosition: "top", objectFit: "cover" },
         children: [
           d == null && /* @__PURE__ */ r.jsx(rr, {}),
