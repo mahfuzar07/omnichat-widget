@@ -1,8 +1,9 @@
 'use client';
+import { animate, stagger } from 'motion';
 import { useState, useRef, useEffect } from 'react';
 import MessageList from './MessageList';
 import ChatInput from './ChatInput';
-import { Message, usePageStore, useWidgetConfigStore } from '../../lib/store';
+import { Message, usePageStore, useWidgetConfigStore, useWidgetToggleStore } from '../../lib/store';
 import { MdOutlineKeyboardBackspace } from 'react-icons/md';
 
 interface AgentProfile {
@@ -27,8 +28,6 @@ const ChatContainer = () => {
 		{ id: 1, imageUrl: 'https://cdn.pixabay.com/photo/2022/02/25/23/22/woman-7034972_640.png' },
 		{ id: 2, imageUrl: 'https://cdn.pixabay.com/photo/2022/02/25/23/22/woman-7034972_640.png' },
 		{ id: 3, imageUrl: 'https://cdn.pixabay.com/photo/2022/02/25/23/22/woman-7034972_640.png' },
-		{ id: 4, imageUrl: 'https://cdn.pixabay.com/photo/2022/02/25/23/22/woman-7034972_640.png' },
-		{ id: 5, imageUrl: 'https://cdn.pixabay.com/photo/2022/02/25/23/22/woman-7034972_640.png' },
 	];
 
 	// Store the API endpoint in a ref
@@ -107,36 +106,52 @@ const ChatContainer = () => {
 		}
 	};
 
+	const widgetOpen = useWidgetToggleStore((state) => state.widgetOpen);
+	const headerAnimateRef = useRef<HTMLDivElement>(null);
+	const avatarRef = useRef<HTMLDivElement>(null);
+	const titleRef = useRef<HTMLHeadingElement>(null);
+
+	useEffect(() => {
+		if (isMounted && widgetOpen && headerAnimateRef.current && avatarRef.current && titleRef.current) {
+			animate(
+				[headerAnimateRef.current, avatarRef.current, titleRef.current],
+				{ opacity: [0, 1], transform: ['translateX(80px)', 'translateX(0px)'] },
+				{ duration: 0.5, delay: stagger(0.15) }
+			);
+		}
+	}, [isMounted, widgetOpen]);
+
 	// Don't render anything during SSR or before mounting
-	if (!isMounted || typeof window === 'undefined') {
-		return null;
-	}
+	// if (!isMounted || typeof window === 'undefined') {
+	// 	return null;
+	// }
 
 	return (
 		<>
-			<div className="text-white flex items-center py-3 relative" style={{ backgroundColor: primaryColor }}>
-				<div className="relative px-5 pb-2 max-w-sm mx-auto text-center">
-					<h3 className="font-medium text-2xl mb-3">Start a chat</h3>
-					<div className="flex -space-x-2 mb-2 justify-center">
+			<div className="text-white flex px-3 gap-5 items-center py-3 relative" style={{ backgroundColor: primaryColor }}>
+				<div
+					ref={headerAnimateRef}
+					className="text-white cursor-pointer  hover:bg-white/20 p-1 rounded flex items-center justify-center hover:text-gray-200 transition-colors "
+					aria-label="contact"
+					onClick={() => setSelectedPage(null)}
+				>
+					<MdOutlineKeyboardBackspace className="text-xl" />
+				</div>
+				<div className="relative flex items-center gap-2 w-full">
+					<div ref={avatarRef} className="flex -space-x-2 justify-center">
 						{agents.map((agent) => (
-							<div key={agent.id} className="w-11 h-11 rounded-full bg-white border-2 border-white overflow-hidden">
+							<div key={agent.id} className="w-8 h-8 rounded-full bg-white border-2 border-white overflow-hidden">
 								<img src={agent.imageUrl} alt={`Agent ${agent.id}`} className="w-full h-full object-cover" />
 							</div>
 						))}
 					</div>
-
-					<p className="text-white/80 text-sm">We are here to help! Message us about what you need. Our agents typically reply in a few minutes.</p>
+					<h3 ref={titleRef} className="font-medium text-lg">
+						Start a chat
+					</h3>
 				</div>
-				<button
-					className="text-white absolute left-2 top-3 bg-white/20 p-2 rounded-full flex items-center justify-center hover:text-gray-200 transition-colors "
-					aria-label="contact"
-					onClick={() => setSelectedPage(null)}
-				>
-					<MdOutlineKeyboardBackspace className="text-lg" />
-				</button>
 			</div>
 
-			<div ref={containerRef} className="message-container smooth-scroll my-1">
+			<div className="message-container smooth-scroll my-1">
 				{isLoading && (
 					<div className="flex justify-center mt-4">
 						<div className="dot-typing"></div>

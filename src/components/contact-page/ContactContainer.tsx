@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { MdEmail, MdOutlineKeyboardBackspace } from 'react-icons/md';
-import { usePageStore, useWidgetConfigStore } from '../../lib/store';
+import { usePageStore, useWidgetConfigStore, useWidgetToggleStore } from '../../lib/store';
+import { animate, stagger } from 'motion';
 
 interface AgentProfile {
 	id: number;
@@ -17,8 +18,6 @@ export default function ContactContainer() {
 		{ id: 1, imageUrl: 'https://cdn.pixabay.com/photo/2022/02/25/23/22/woman-7034972_640.png' },
 		{ id: 2, imageUrl: 'https://cdn.pixabay.com/photo/2022/02/25/23/22/woman-7034972_640.png' },
 		{ id: 3, imageUrl: 'https://cdn.pixabay.com/photo/2022/02/25/23/22/woman-7034972_640.png' },
-		{ id: 4, imageUrl: 'https://cdn.pixabay.com/photo/2022/02/25/23/22/woman-7034972_640.png' },
-		{ id: 5, imageUrl: 'https://cdn.pixabay.com/photo/2022/02/25/23/22/woman-7034972_640.png' },
 	];
 
 	// Form states
@@ -53,30 +52,56 @@ export default function ContactContainer() {
 		}
 	};
 
+	const widgetOpen = useWidgetToggleStore((state) => state.widgetOpen);
+	const headerAnimateRef = useRef<HTMLDivElement>(null);
+	const avatarRef = useRef<HTMLDivElement>(null);
+	const titleRef = useRef<HTMLHeadingElement>(null);
+	const formRef = useRef<HTMLDivElement>(null);
+	const formButtonRef = useRef<HTMLDivElement>(null);
+
+	useEffect(() => {
+		if (widgetOpen && headerAnimateRef.current && avatarRef.current && titleRef.current) {
+			animate(
+				[headerAnimateRef.current, avatarRef.current, titleRef.current],
+				{ opacity: [0, 1], transform: ['translateX(80px)', 'translateX(0px)'] },
+				{ duration: 0.5, delay: stagger(0.15) }
+			);
+		}
+		if (widgetOpen && formRef.current && formButtonRef.current) {
+			animate(
+				[formRef.current, formButtonRef.current],
+				{ opacity: [0, 1], transform: ['translateY(80px)', 'translateY(0px)'] },
+				{ duration: 0.5, delay: stagger(0.1) }
+			);
+		}
+	}, [widgetOpen]);
+
 	return (
 		<>
-			<div className="text-white flex items-center py-3 relative" style={{ backgroundColor: primaryColor }}>
-				<div className="relative px-5 py-2 max-w-sm mx-auto text-center">
-					<div className="flex -space-x-2 mb-2 justify-center">
+			<div className="text-white flex px-3 gap-5 items-center py-3 relative" style={{ backgroundColor: primaryColor }}>
+				<div
+					ref={headerAnimateRef}
+					className="text-white cursor-pointer  hover:bg-white/20 p-1 rounded flex items-center justify-center hover:text-gray-200 transition-colors "
+					aria-label="contact"
+					onClick={() => setSelectedPage(null)}
+				>
+					<MdOutlineKeyboardBackspace className="text-xl" />
+				</div>
+				<div className="relative flex items-center gap-3">
+					<div ref={avatarRef} className="flex -space-x-2 justify-center">
 						{agents.map((agent) => (
-							<div key={agent.id} className="w-11 h-11 rounded-full bg-white border-2 border-white overflow-hidden">
+							<div key={agent.id} className="w-8 h-8 rounded-full bg-white border-2 border-white overflow-hidden">
 								<img src={agent.imageUrl} alt={`Agent ${agent.id}`} className="w-full h-full object-cover" />
 							</div>
 						))}
 					</div>
-					<h3 className="font-medium text-lg">How can we help?</h3>
-					<p className="text-white/80 text-sm">We usually respond in a few hours.</p>
+					<h3 ref={titleRef} className="font-medium text-md">
+						How can we help?
+					</h3>
 				</div>
-				<button
-					className="text-white absolute left-2 top-3 bg-white/20 p-2 rounded-full flex items-center justify-center hover:text-gray-200 transition-colors "
-					aria-label="contact"
-					onClick={() => setSelectedPage(null)}
-				>
-					<MdOutlineKeyboardBackspace className="text-lg" />
-				</button>
 			</div>
 
-			<div className="flex-1 overflow-y-auto px-4 py-2 bg-transparent space-y-5 z-10 relative">
+			<div ref={formRef} className="flex-1 overflow-y-auto px-4 py-2 bg-transparent space-y-5 z-10 relative">
 				<form onSubmit={handleSubmit} className="py-4 space-y-3 rounded-md shadow-sm max-w-lg mx-auto text-sm">
 					<input
 						type="text"
@@ -113,14 +138,16 @@ export default function ContactContainer() {
 						required
 					/>
 
-					<button
-						type="submit"
-						className="w-full flex items-center justify-center space-x-2 bg-black text-white py-3 px-4 rounded hover:bg-gray-800 transition-colors text-sm disabled:opacity-50"
-						disabled={isLoading || !name || !email || !message}
-					>
-						<MdEmail />
-						<span>{isLoading ? 'Sending...' : 'Send Email'}</span>
-					</button>
+					<div ref={formButtonRef}>
+						<button
+							type="submit"
+							className="w-full flex items-center justify-center space-x-2 bg-black text-white py-3 px-4 rounded hover:bg-gray-800 transition-colors text-sm disabled:opacity-50"
+							disabled={isLoading || !name || !email || !message}
+						>
+							<MdEmail />
+							<span>{isLoading ? 'Sending...' : 'Send Email'}</span>
+						</button>
+					</div>
 				</form>
 			</div>
 		</>

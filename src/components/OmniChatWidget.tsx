@@ -8,6 +8,7 @@ import HomeContainer from './main-page/HomeContainer';
 import ContactContainer from './contact-page/ContactContainer';
 import ArticlesContainer from './articles-page/ArticlesContainer';
 import ChatContainer from './conversation-page/ChatContainer';
+import { AnimatePresence, motion } from 'motion/react';
 
 export type Message = {
 	id: string;
@@ -83,18 +84,26 @@ const OmniChatWidget = ({ apiEndpoint, widgetTitle, primaryColor, position, heig
 	return (
 		<>
 			<div className={`fixed ${currentPosition === 'bottom-right' ? 'right-3' : 'left-3'} bottom-3 z-[10000]`}>
-				<button
+				<motion.button
+					whileHover={{ scale: 1.1 }}
+					whileTap={{ scale: 0.9 }}
 					onClick={toggleWidget}
-					className="rounded-full p-3 text-white shadow-lg hover:opacity-90 transition-opacity"
+					className="rounded-full p-3 text-white shadow-lg"
 					style={{ backgroundColor: currentColor }}
 					aria-label="Open chat"
 				>
-					{widgetOpen ? <MdClose className="text-3xl" /> : <IoLogoWechat className="text-3xl" />}
-				</button>
+					{widgetOpen ? <MdClose className="text-xl" /> : <IoLogoWechat className="text-3xl" />}
+				</motion.button>
 			</div>
-
-			{widgetOpen && (
-				<div
+			<AnimatePresence initial={false}></AnimatePresence>
+			{widgetOpen ? (
+				<motion.div
+					initial={{ opacity: 0, scale: 0 }}
+					animate={{ opacity: 1, scale: 1 }}
+					exit={{ opacity: 0, scale: 0 }}
+					transition={{
+						duration: 0.4,
+					}}
 					className={`bg-slate-100 z-[9999] fixed  bottom-[40px] rounded shadow-md flex flex-col overflow-hidden w-full md:w-auto pb-8 ${
 						currentPosition === 'bottom-right' ? 'md:right-5 right-1' : 'md:left-5 left-1'
 					}`}
@@ -109,8 +118,8 @@ const OmniChatWidget = ({ apiEndpoint, widgetTitle, primaryColor, position, heig
 					<div className="p-2 absolute bottom-0 inset-x-0 w-full text-xs text-center bg-transparent ">
 						<p className="px-5 rounded-full w-max mx-auto text-slate-400">Powered by Update Tech</p>
 					</div>
-				</div>
-			)}
+				</motion.div>
+			) : null}
 		</>
 	);
 };

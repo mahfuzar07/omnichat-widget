@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { persist, createJSONStorage } from 'zustand/middleware';
+// import { persist, createJSONStorage } from 'zustand/middleware';
 
 type WidgetToggleState = {
 	widgetOpen: boolean;
@@ -65,33 +65,25 @@ export interface ChatState {
 	setApiEndpoint: (endpoint: string) => void;
 }
 
-export const useWidgetConfigStore = create<ChatState>()(
-	persist(
-		(set) => ({
-			// Default values
-			widgetTitle: 'Hi there 👋',
-			primaryColor: '#4f46e5',
-			position: 'bottom-right',
-			height: '90vh',
-			width: '385px',
-			messages: [],
-			apiEndpoint: '/api/chat',
+export const useWidgetConfigStore = create<ChatState>()((set) => ({
+	// Default values
+	widgetTitle: 'Hi there 👋',
+	primaryColor: '#4f46e5',
+	position: 'bottom-right',
+	height: '85vh',
+	width: '385px',
+	messages: [],
+	apiEndpoint: '/api/chat',
 
-			// Actions to update the state
-			setWidgetTitle: (title) => set({ widgetTitle: title }),
-			setPrimaryColor: (color) => set({ primaryColor: color }),
-			setPosition: (position) => set({ position }),
-			setDimensions: (height, width) => set({ height, width }),
-			addMessage: (message) =>
-				set((state) => ({
-					messages: [...state.messages, message],
-				})),
-			clearMessages: () => set({ messages: [] }),
-			setApiEndpoint: (endpoint) => set({ apiEndpoint: endpoint }),
-		}),
-		{
-			name: 'chat-widget-storage',
-			storage: typeof window !== 'undefined' ? createJSONStorage(() => localStorage) : undefined,
-		}
-	)
-);
+	// Actions to update the state
+	setWidgetTitle: (title) => set({ widgetTitle: title }),
+	setPrimaryColor: (color) => set({ primaryColor: color }),
+	setPosition: (position) => set({ position }),
+	setDimensions: (height, width) => set({ height, width }),
+	addMessage: (message) =>
+		set((state) => ({
+			messages: [...state.messages, message],
+		})),
+	clearMessages: () => set({ messages: [] }),
+	setApiEndpoint: (endpoint) => set({ apiEndpoint: endpoint }),
+}));
