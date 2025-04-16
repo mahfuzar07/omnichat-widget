@@ -49,7 +49,7 @@ const ChatInput = ({ onSendMessage, isLoading }: ChatInputProps) => {
 					onChange={(e) => setMessage(e.target.value)}
 					placeholder="Type your message..."
 					rows={1}
-					className="w-full pr-16 resize-none overflow-y-auto hide-scrollbar max-h-[100px] px-3 py-2.5 text-sm text-black focus:outline-none"
+					className="w-full pr-16 bg-transparent resize-none overflow-y-auto hide-scrollbar max-h-[100px] px-3 py-2.5 text-sm text-black focus:outline-none"
 					disabled={isLoading}
 				/>
 

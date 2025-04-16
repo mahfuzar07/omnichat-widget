@@ -82,7 +82,7 @@ const OmniChatWidget = ({ apiEndpoint, widgetTitle, primaryColor, position, heig
 
 	return (
 		<>
-			<div className={`fixed ${currentPosition === 'bottom-right' ? 'right-3' : 'left-3'} bottom-3 z-50`}>
+			<div className={`fixed ${currentPosition === 'bottom-right' ? 'right-3' : 'left-3'} bottom-3 z-[1000]`}>
 				<button
 					onClick={toggleWidget}
 					className="rounded-full p-3 text-white shadow-lg hover:opacity-90 transition-opacity"

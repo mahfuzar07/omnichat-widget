@@ -1,5 +1,4 @@
 'use client';
-import './App.css';
 import OmniChatWidget from './components/OmniChatWidget';
 
 function App() {
