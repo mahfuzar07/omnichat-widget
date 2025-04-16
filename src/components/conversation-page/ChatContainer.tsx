@@ -43,10 +43,11 @@ const ChatContainer = () => {
 		}
 	}, [apiEndpoint, storeMessages]);
 
-	// Scroll to bottom when messages change
 	useEffect(() => {
 		if (containerRef.current && isMounted) {
-			containerRef.current.scrollTop = 0;
+			setTimeout(() => {
+				containerRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
+			}, 0);
 		}
 	}, [messages, isMounted]);
 
@@ -151,7 +152,7 @@ const ChatContainer = () => {
 				</div>
 			</div>
 
-			<div className="message-container smooth-scroll my-1">
+			<div ref={containerRef} className="message-container smooth-scroll my-1 scroll-smooth">
 				{isLoading && (
 					<div className="flex justify-center mt-4">
 						<div className="dot-typing"></div>
