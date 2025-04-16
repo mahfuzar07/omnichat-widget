@@ -1,7 +1,7 @@
 {
 	"name": "omnichat-widget",
 	"private": false,
-	"version": "0.1.7",
+	"version": "0.1.8",
 	"author": "Omni Chat",
 	"license": "MIT",
 	"description": "A customizable React chat widget",
