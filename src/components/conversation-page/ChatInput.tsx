@@ -3,7 +3,7 @@
 import type React from 'react';
 import { BsFillSendFill, BsEmojiSmile } from 'react-icons/bs';
 import { useState, useRef, useEffect } from 'react';
-import { MdAttachFile } from 'react-icons/md';
+import { MdAttachFile, MdClose } from 'react-icons/md';
 import { FaImages, FaRegFileAlt, FaRegFileAudio } from 'react-icons/fa';
 import { AnimatePresence, motion } from 'motion/react';
 import data from '@emoji-mart/data';
@@ -41,7 +41,6 @@ const ChatInput = ({ onSendMessage, isLoading }: ChatInputProps) => {
 
 	const handleEmojiSelect = (emoji: any) => {
 		setMessage((prev) => prev + emoji.native);
-		setOpenEmoji(false);
 	};
 
 	const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -81,6 +80,8 @@ const ChatInput = ({ onSendMessage, isLoading }: ChatInputProps) => {
 			setMessage('');
 			setSelectedImages([]);
 			setSelectedDocuments([]);
+			setOpenEmoji(false);
+			setOpenAttachment(false);
 		}
 	};
 
@@ -92,6 +93,8 @@ const ChatInput = ({ onSendMessage, isLoading }: ChatInputProps) => {
 				setMessage('');
 				setSelectedImages([]);
 				setSelectedDocuments([]);
+				setOpenEmoji(false);
+				setOpenAttachment(false);
 			}
 		}
 	};
@@ -136,7 +139,7 @@ const ChatInput = ({ onSendMessage, isLoading }: ChatInputProps) => {
 
 				{/* File Preview Section */}
 				{(selectedImages.length > 0 || selectedDocuments.length > 0) && (
-					<div className="absolute h-[100px] top-[-100px] bottom-full left-0 w-full p-2 bg-white border border-slate-100 rounded-t">
+					<div className="absolute h-[100px] top-[-100px] bottom-full left-0 w-full p-3 bg-white border border-slate-100 rounded-t">
 						<div className="flex flex-wrap gap-2">
 							{selectedImages.map((file, index) => (
 								<div key={index} className="relative group">
@@ -146,7 +149,7 @@ const ChatInput = ({ onSendMessage, isLoading }: ChatInputProps) => {
 										onClick={() => removeImage(index)}
 										className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
 									>
-										×
+										<MdClose size={12} />
 									</button>
 								</div>
 							))}
@@ -161,7 +164,7 @@ const ChatInput = ({ onSendMessage, isLoading }: ChatInputProps) => {
 										onClick={() => removeDocument(index)}
 										className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
 									>
-										×
+										<MdClose size={12} />
 									</button>
 								</div>
 							))}
@@ -177,7 +180,7 @@ const ChatInput = ({ onSendMessage, isLoading }: ChatInputProps) => {
 							animate={{ opacity: 1, scale: 1 }}
 							exit={{ opacity: 0, scale: 0 }}
 							transition={{ duration: 0.4 }}
-							className="flex bg-slate-200 h-[100px] items-center gap-5 absolute top-[-100px] left-0 w-full p-3 border border-slate-100 rounded"
+							className="flex bg-white h-[100px] items-center justify-center gap-5 absolute top-[-100px] left-0 w-full p-2 border border-slate-100 rounded backdrop-blur-xl"
 						>
 							<input type="file" ref={imageInputRef} onChange={handleImageSelect} accept="image/*" multiple className="hidden" />
 							<button type="button" onClick={() => imageInputRef.current?.click()} className="flex flex-col items-center gap-1">
@@ -220,17 +223,14 @@ const ChatInput = ({ onSendMessage, isLoading }: ChatInputProps) => {
 							animate={{ opacity: 1, scale: 1 }}
 							exit={{ opacity: 0, scale: 0 }}
 							transition={{ duration: 0.4 }}
-							className="absolute h-[400px] overflow-hidden top-[-400px] -right-2"
+							className="absolute pt-2 rounded h-[400px] overflow-hidden top-[-401px] right-0 bg-white backdrop-blur w-full flex justify-center"
 						>
 							<Picker
 								data={data}
 								onEmojiSelect={handleEmojiSelect}
 								theme="light"
 								previewPosition="none"
-								// skinTonePosition="none"
-								// searchPosition="none"
-								// navPosition="none"
-								perLine={10}
+								perLine={9}
 								maxFrequentRows={1}
 								className="w-full"
 							/>
