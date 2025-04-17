@@ -8,7 +8,7 @@ import { FaImages, FaRegFileAlt, FaRegFileAudio } from 'react-icons/fa';
 import { AnimatePresence, motion } from 'motion/react';
 import data from '@emoji-mart/data';
 import Picker from '@emoji-mart/react';
-import { useWidgetConfigStore } from '../../lib/store';
+// import { useWidgetConfigStore } from '../../lib/store';
 
 type ChatInputProps = {
 	onSendMessage: (message: string, attachments?: File[]) => void;
@@ -19,11 +19,11 @@ const ChatInput = ({ onSendMessage, isLoading }: ChatInputProps) => {
 	const [message, setMessage] = useState('');
 	const [openAttachment, setOpenAttachment] = useState(false);
 	const [openEmoji, setOpenEmoji] = useState(false);
-	const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+	// const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 	const [selectedImages, setSelectedImages] = useState<File[]>([]);
 	const [selectedDocuments, setSelectedDocuments] = useState<File[]>([]);
 	const textareaRef = useRef<HTMLTextAreaElement>(null);
-	const fileInputRef = useRef<HTMLInputElement>(null);
+	// const fileInputRef = useRef<HTMLInputElement>(null);
 	const imageInputRef = useRef<HTMLInputElement>(null);
 	const documentInputRef = useRef<HTMLInputElement>(null);
 	// const [uploadProgress, setUploadProgress] = useState<number>(0);
