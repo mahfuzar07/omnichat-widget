@@ -12,12 +12,13 @@ type PageState = {
     setSelectedPage: (page: PageType) => void;
 };
 export declare const usePageStore: import('zustand').UseBoundStore<import('zustand').StoreApi<PageState>>;
-export interface Message {
+export type Message = {
     id: string;
     content: string;
     sender: 'user' | 'bot';
     timestamp?: Date;
-}
+    files?: File[];
+};
 export interface ChatState {
     widgetTitle: string;
     primaryColor: string;
