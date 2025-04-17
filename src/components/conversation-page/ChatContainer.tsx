@@ -51,8 +51,8 @@ const ChatContainer = () => {
 		}
 	}, [messages, isMounted]);
 
-	const handleSendMessage = async (content: string) => {
-		if (!content.trim() || !isMounted) return;
+	const handleSendMessage = async (content: string, files?: File[]) => {
+		if ((!content.trim() && !files?.length) || !isMounted) return;
 
 		// Add user message
 		const userMessage: Message = {
@@ -60,6 +60,7 @@ const ChatContainer = () => {
 			content,
 			sender: 'user',
 			timestamp: new Date(),
+			files: files || [],
 		};
 
 		setMessages((prev) => [...prev, userMessage]);
@@ -67,11 +68,19 @@ const ChatContainer = () => {
 		setIsLoading(true);
 
 		try {
+			// Create FormData for file upload
+			const formData = new FormData();
+			formData.append('message', content);
+			if (files && files.length > 0) {
+				files.forEach((file, index) => {
+					formData.append(`file${index}`, file);
+				});
+			}
+
 			// Make API call to the backend
 			const response = await fetch(apiEndpointRef.current, {
 				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ message: content }),
+				body: formData,
 			});
 
 			if (!response.ok) {

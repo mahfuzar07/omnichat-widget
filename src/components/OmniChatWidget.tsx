@@ -95,31 +95,31 @@ const OmniChatWidget = ({ apiEndpoint, widgetTitle, primaryColor, position, heig
 					{widgetOpen ? <MdClose className="text-xl" /> : <IoLogoWechat className="text-3xl" />}
 				</motion.button>
 			</div>
-			<AnimatePresence initial={false}></AnimatePresence>
-			{widgetOpen ? (
-				<motion.div
-					initial={{ opacity: 0, scale: 0 }}
-					animate={{ opacity: 1, scale: 1 }}
-					exit={{ opacity: 0, scale: 0 }}
-					transition={{
-						duration: 0.4,
-					}}
-					className={`bg-slate-100 z-[9999] fixed  bottom-[40px] rounded shadow-md flex flex-col overflow-hidden w-full md:w-auto pb-8 ${
-						currentPosition === 'bottom-right' ? 'md:right-5 right-1' : 'md:left-5 left-1'
-					}`}
-					style={{ height: currentHeight, width: currentWidth, backgroundImage: `url('../bg.svg')`, backgroundPosition: 'top', objectFit: 'cover' }}
-				>
-					{selectedPage == null && <HomeContainer />}
-					{selectedPage == 'article' && <ArticlesContainer />}
-					{selectedPage == 'conversation' && <ChatContainer />}
-					{selectedPage == 'contact' && <ContactContainer />}
+			<AnimatePresence>
+				{widgetOpen ? (
+					<motion.div
+						initial={{ opacity: 0, scale: 0 }}
+						animate={{ opacity: 1, scale: 1 }}
+						transition={{
+							duration: 0.4,
+						}}
+						className={`bg-slate-100 z-[9999] fixed  bottom-[40px] rounded shadow-md flex flex-col overflow-hidden w-full md:w-auto pb-8 ${
+							currentPosition === 'bottom-right' ? 'md:right-5 right-1' : 'md:left-5 left-1'
+						}`}
+						style={{ height: currentHeight, width: currentWidth, backgroundImage: `url('../bg.svg')`, backgroundPosition: 'top', objectFit: 'cover' }}
+					>
+						{selectedPage == null && <HomeContainer />}
+						{selectedPage == 'article' && <ArticlesContainer />}
+						{selectedPage == 'conversation' && <ChatContainer />}
+						{selectedPage == 'contact' && <ContactContainer />}
 
-					{/* footer section  */}
-					<div className="p-2 absolute bottom-0 inset-x-0 w-full text-xs text-center bg-transparent ">
-						<p className="px-5 rounded-full w-max mx-auto text-slate-400">Powered by Update Tech</p>
-					</div>
-				</motion.div>
-			) : null}
+						{/* footer section  */}
+						<div className="p-2 absolute bottom-0 inset-x-0 w-full text-xs text-center bg-transparent ">
+							<p className="px-5 rounded-full w-max mx-auto text-slate-400">Powered by Update Tech</p>
+						</div>
+					</motion.div>
+				) : null}
+			</AnimatePresence>
 		</>
 	);
 };

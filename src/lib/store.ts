@@ -34,12 +34,13 @@ export const usePageStore = create<PageState>((set) => ({
 // widget Config section
 
 // Define the types for our store
-export interface Message {
+export type Message = {
 	id: string;
 	content: string;
 	sender: 'user' | 'bot';
 	timestamp?: Date;
-}
+	files?: File[];
+};
 
 export interface ChatState {
 	// UI Configuration
