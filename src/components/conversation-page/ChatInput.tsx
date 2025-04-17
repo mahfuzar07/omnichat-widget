@@ -73,6 +73,10 @@ const ChatInput = ({ onSendMessage, isLoading }: ChatInputProps) => {
 		setSelectedDocuments((prev) => prev.filter((_, i) => i !== index));
 	};
 
+	requestAnimationFrame(() => {
+		textareaRef.current?.focus();
+	});
+
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 		if ((message.trim() || selectedImages.length > 0 || selectedDocuments.length > 0) && !isLoading) {
@@ -82,6 +86,9 @@ const ChatInput = ({ onSendMessage, isLoading }: ChatInputProps) => {
 			setSelectedDocuments([]);
 			setOpenEmoji(false);
 			setOpenAttachment(false);
+			requestAnimationFrame(() => {
+				textareaRef.current?.focus();
+			});
 		}
 	};
 
@@ -95,6 +102,9 @@ const ChatInput = ({ onSendMessage, isLoading }: ChatInputProps) => {
 				setSelectedDocuments([]);
 				setOpenEmoji(false);
 				setOpenAttachment(false);
+				requestAnimationFrame(() => {
+					textareaRef.current?.focus();
+				});
 			}
 		}
 	};

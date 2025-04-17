@@ -88,7 +88,7 @@ const MessageList = ({ messages }: MessageListProps) => {
 					<div
 						className={`max-w-[80%] rounded px-2 py-1 shadow ${message.sender === 'user' ? 'bg-blue-100 text-gray-800' : 'bg-white text-gray-900'}`}
 					>
-						{message.content && <div className="text-sm">{message.content}</div>}
+						{message.content && <div className="text-sm break-words whitespace-pre-wrap">{message.content}</div>}
 						{message.files && message.files.length > 0 && (
 							<div className="space-y-2">
 								{message.files.map((file, index) => (
