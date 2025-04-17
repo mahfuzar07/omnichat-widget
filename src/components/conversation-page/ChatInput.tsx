@@ -220,7 +220,7 @@ const ChatInput = ({ onSendMessage, isLoading }: ChatInputProps) => {
 							animate={{ opacity: 1, scale: 1 }}
 							exit={{ opacity: 0, scale: 0 }}
 							transition={{ duration: 0.4 }}
-							className="absolute h-[400px] overflow-scroll top-[-400px] left-0 w-full"
+							className="absolute h-[400px] overflow-hidden top-[-400px] -right-2"
 						>
 							<Picker
 								data={data}
@@ -230,7 +230,7 @@ const ChatInput = ({ onSendMessage, isLoading }: ChatInputProps) => {
 								// skinTonePosition="none"
 								// searchPosition="none"
 								// navPosition="none"
-								perLine={9}
+								perLine={10}
 								maxFrequentRows={1}
 								className="w-full"
 							/>
